@@ -1,4 +1,4 @@
-export const extendTheme = {
+const extend = {
   colors: {
     baseWhite: "#ffffff",
     baseBlack: "#000000",
