@@ -14,16 +14,16 @@ export const grid = recipe({
   variants: {
     color: {
       neutral: atoms({
-        background: { default: "black", hover: "sky-100" },
-        color: { default: "sky-100", hover: "sky-100" },
+        background: { default: "baseWhite", hover: "baseWhite" },
+        color: { default: "baseWhite", hover: "baseWhite" },
       }),
       brand: atoms({
-        background: { default: "sky-100", hover: "sky-100" },
-        color: { default: "white", hover: "white" },
+        background: { default: "baseWhite", hover: "baseWhite" },
+        color: { default: "baseWhite", hover: "baseWhite" },
       }),
       accent: atoms({
-        background: "sky-100",
-        color: { default: "sky-100", hover: "sky-100" },
+        background: "baseWhite",
+        color: { default: "baseWhite", hover: "baseWhite" },
       }),
     },
     size: {

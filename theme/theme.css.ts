@@ -1,37 +1,10 @@
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
-import colors from "tailwindcss/colors";
 import { extendTheme } from "../output/theme";
 
 globalStyle("*, :after, :before", {
   boxSizing: "border-box",
   border: "0 solid",
 });
-
-type TailwindColorStop =
-  | 50
-  | 100
-  | 200
-  | 300
-  | 400
-  | 500
-  | 600
-  | 700
-  | 800
-  | 900;
-
-function tailwindColorMap<T extends keyof typeof colors>(
-  name: T
-): {
-  [P in keyof typeof colors[T] as `${T}-${TailwindColorStop}`]: string;
-} {
-  // @ts-ignore: I promise the type is correct:
-  return Object.fromEntries(
-    Object.entries(colors[name]).map(([num, value]) => [
-      `${name}-${num}`,
-      value,
-    ])
-  );
-}
 
 // Me doing thingys I don't understand with interfaces
 export interface responsiveTypes {
@@ -113,18 +86,5 @@ export const vars = createGlobalTheme(":root", {
     screenHeight: "100vh",
     full: "100%",
   },
-  colors: {
-    white: colors.white,
-    black: colors.black,
-    transparent: "transparent",
-    ...tailwindColorMap("blue"),
-    ...tailwindColorMap("cyan"),
-    ...tailwindColorMap("gray"),
-    ...tailwindColorMap("red"),
-    ...tailwindColorMap("green"),
-    ...tailwindColorMap("indigo"),
-    ...tailwindColorMap("purple"),
-    ...tailwindColorMap("sky"),
-    ...extendTheme.colors,
-  },
+  colors: extendTheme.colors,
 } as const);

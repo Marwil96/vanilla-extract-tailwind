@@ -3,33 +3,19 @@ import type * as Polymorphic from "@radix-ui/react-polymorphic";
 
 import { vars } from "../../theme/theme.css";
 import { Box, BoxProps } from "../Box/Box";
-import { atoms } from "../../theme/sprinkles.css";
+import { atoms, Atoms } from "../../theme/sprinkles.css";
 
 interface Props {
   grid?: string;
-  autoRows?: string;
-  autoColumns?: string;
-  columns?: string;
-  rows?: string;
-  columnsDesktop?: string;
-  rowsDesktop?: string;
+  columns?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  rows?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  columnsDesktop?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  rowsDesktop?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
   areas?: string[];
   area?: string;
   displayName?: string;
-  gapY?: {
-    default?: string | number;
-    sm?: string | number;
-    md?: string | number;
-    lg?: string | number;
-    xl?: string | number;
-  };
-  gapX?: {
-    default?: string | number;
-    sm?: string | number;
-    md?: string | number;
-    lg?: string | number;
-    xl?: string | number;
-  };
+  gapY?: any;
+  gapX?: any;
 }
 
 //Combining Polymorphic and BoxProps so we can use box component as a grid easier
@@ -37,19 +23,17 @@ interface PolymorphicGrid extends Props, BoxProps {}
 
 export type GridProps = Polymorphic.OwnProps<PolymorphicGrid>;
 
-export const Grid = ((props: PolymorphicGrid) => {
+const Grid = (props: PolymorphicGrid) => {
   const {
-    gapY = { default: vars.space[4], sm: vars.space[6] },
-    gapX = { default: vars.space[4], sm: vars.space[6] },
+    gapY = 4,
+    gapX = 4,
     grid,
     area,
     areas,
-    columns = "4",
-    columnsDesktop = "12",
-    rows = "4",
-    rowsDesktop = "12",
-    autoRows,
-    autoColumns = "auto",
+    columns = 4,
+    columnsDesktop = 12,
+    rows = 4,
+    rowsDesktop = 12,
     style,
     children,
     ...restProps
@@ -58,15 +42,13 @@ export const Grid = ((props: PolymorphicGrid) => {
   return (
     <Box
       layout="grid"
-      // placeContent={place}
+      layoutDesktop="grid"
       className={atoms({
-        columnGap: { sm: gapX },
-        rowGap: { sm: gapY },
-        gridTemplateColumns: { sm: 1 },
-        gridTemplateRows: { sm: 1 },
-        gridAutoRows: autoRows,
-        gridAutoColumns: autoColumns,
-        gridTemplateAreas: areas?.length ? `'${areas.join(`' '`)}'` : undefined,
+        columnGap: gapX,
+        rowGap: gapY,
+        gridTemplateColumns: { default: columns, lg: columnsDesktop },
+        gridTemplateRows: { default: rows, lg: rowsDesktop },
+        display: "grid",
       })}
       style={{ ...style }}
       {...restProps}
@@ -74,6 +56,7 @@ export const Grid = ((props: PolymorphicGrid) => {
       {children}
     </Box>
   );
-}) as PolymorphicGrid;
+};
 
+export { Grid };
 Grid.displayName = "Grid";

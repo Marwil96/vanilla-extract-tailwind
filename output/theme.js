@@ -1,4 +1,4 @@
-const extend = {
+export const extendTheme = {
   fontSize: {
     section: "12px",
     bodyS: "14px",
@@ -37,6 +37,15 @@ const extend = {
   },
   letterSpacing: { section: "0.5px" },
   colors: {
+    white: "#FFFFFF",
+    black: "#000000",
+    offWhite: "#FFFEF7",
+    superLightGray: "#F9F9F9",
+    lightGray: "#F6F6F6",
+    gray: "#DEDEDE",
+    darkGray: "#B0B0B0",
+    darkestGray: "#666666",
+    transparent: "transparent",
     neutral700: "#334155",
     baseWhite: "#ffffff",
     baseBlack: "#000000",
@@ -125,5 +134,3 @@ const extend = {
     warning700: "#b45309",
   },
 };
-
-module.exports = extend;

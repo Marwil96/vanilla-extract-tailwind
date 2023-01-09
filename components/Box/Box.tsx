@@ -20,15 +20,8 @@ export const Box = ({
   as: Component = "div",
   style,
   children,
-  layout = "block",
-  layoutDesktop,
 }: BoxProps) => (
-  <Component
-    className={className}
-    style={{ ...style }}
-    layout={layout}
-    layoutDesktop={layoutDesktop}
-  >
+  <Component className={className} style={{ ...style }}>
     {children}
   </Component>
 );
