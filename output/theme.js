@@ -1,7 +1,7 @@
-const extend = {
+export const extendTheme = {
   colors: {
-    baseBlack: "#000000",
     baseWhite: "#ffffff",
+    baseBlack: "#000000",
     danger100: "#fee2e2",
     danger200: "#fecaca",
     danger300: "#fca5a5",

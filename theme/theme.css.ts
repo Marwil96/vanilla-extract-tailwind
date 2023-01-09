@@ -1,5 +1,6 @@
 import { createGlobalTheme, globalStyle } from "@vanilla-extract/css";
 import colors from "tailwindcss/colors";
+import { extendTheme } from "../output/theme";
 
 globalStyle("*, :after, :before", {
   boxSizing: "border-box",
@@ -32,13 +33,25 @@ function tailwindColorMap<T extends keyof typeof colors>(
   );
 }
 
+export interface responsiveTypes {
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  "2xl": string;
+}
+
+export interface responsiveArray {
+  breakpoint: responsiveTypes[keyof responsiveTypes];
+}
+
 export const responsive = {
   sm: "640px",
   md: "768px",
   lg: "1024px",
   xl: "1280px",
   "2xl": "1536px",
-};
+} as const;
 
 export const vars = createGlobalTheme(":root", {
   shadow: {
@@ -88,6 +101,15 @@ export const vars = createGlobalTheme(":root", {
     72: "18rem",
     80: "20rem",
     96: "24rem",
+    "1/2": "50%",
+    "1/3": "33.333333%",
+    "2/3": "66.666667%",
+    "1/4": "25%",
+    "2/4": "50%",
+    "3/4": "75%",
+    screenWidth: "100vw",
+    screenHeight: "100vh",
+    full: "100%",
   },
   colors: {
     white: colors.white,
@@ -101,5 +123,6 @@ export const vars = createGlobalTheme(":root", {
     ...tailwindColorMap("indigo"),
     ...tailwindColorMap("purple"),
     ...tailwindColorMap("sky"),
+    ...extendTheme,
   },
-});
+} as const);
