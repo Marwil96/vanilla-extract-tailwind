@@ -33,6 +33,7 @@ function tailwindColorMap<T extends keyof typeof colors>(
   );
 }
 
+// Me doing thingys I don't understand with interfaces
 export interface responsiveTypes {
   sm: string;
   md: string;
@@ -45,6 +46,7 @@ export interface responsiveArray {
   breakpoint: responsiveTypes[keyof responsiveTypes];
 }
 
+// Breakpoints
 export const responsive = {
   sm: "640px",
   md: "768px",
@@ -123,6 +125,6 @@ export const vars = createGlobalTheme(":root", {
     ...tailwindColorMap("indigo"),
     ...tailwindColorMap("purple"),
     ...tailwindColorMap("sky"),
-    ...extendTheme,
+    ...extendTheme.colors,
   },
 } as const);

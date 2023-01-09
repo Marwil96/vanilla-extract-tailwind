@@ -32,6 +32,7 @@ interface Props {
   };
 }
 
+//Combining Polymorphic and BoxProps so we can use box component as a grid easier
 interface PolymorphicGrid extends Props, BoxProps {}
 
 export type GridProps = Polymorphic.OwnProps<PolymorphicGrid>;
